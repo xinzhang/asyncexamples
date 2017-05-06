@@ -1,15 +1,21 @@
 const fetch = require('node-fetch');
 
-function showGitHubUser(handle) {
-  const url = 'https://api.github.com/users/xinzhang';
+async function showGitHubUser(handle) {
+  const url = `https://api.github.com/users/{$handle}`;
   //await fetch(url);
 
-  fetch(url)
-    .then(resp => resp.json())
-    .then(user => {
-      console.log(user.name);
-      console.log(user.location);
-    })
+  // fetch(url, )
+  //   .then(resp => resp.json())
+  //   .then(user => {
+  //     console.log(user.name);
+  //     console.log(user.location);
+  //   })
+
+  const resp = await fetch(url);
+  const user = await resp.json();
+
+  console.log(user.name);
+  console.log(user.location);
 
 }
 
